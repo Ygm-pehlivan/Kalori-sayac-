@@ -1,4 +1,3 @@
-
 # Kadın ve erkeklerin ortalama günlük kalori ihtiyaçları (kalori cinsinden)
 kadın_günlük_kalori_ihtiyacı = 2000
 erkek_günlük_kalori_ihtiyacı = 2500
@@ -30,9 +29,9 @@ agirliklar = {
 
 # Kullanıcıdan alınan gram miktarları
 cinsiyet = str(input("Cinsiyetiniz nedir? ").lower())
-karbonhidrat_gram = float(input("Kaç gram karbonhidrat almak istiyorsunuz? "))
-protein_gram = float(input("Kaç gram protein almak istiyorsunuz? "))
-yağ_gram = float(input("Kaç gram yağ almak istiyorsunuz? "))
+karbonhidrat_g = float(input("Kaç gram karbonhidrat almak istiyorsunuz? "))
+protein_g = float(input("Kaç gram protein almak istiyorsunuz? "))
+yağ_g = float(input("Kaç gram yağ almak istiyorsunuz? "))
 elma_adet = int(input("Kaç adet elma yemek istiyorsunuz? "))
 muz_adet = int(input("Kaç adet muz yemek istiyorsunuz? "))
 pirinç_adet = int(input("Kaç fincan pişmiş pirinç yemek istiyorsunuz? "))
@@ -44,9 +43,9 @@ yumurta_adet = int(input("Kaç adet pişmiş yumurta yemek istiyorsunuz? "))
 
 # Toplam kalori hesaplama
 toplam_kalori = (
-    (karbonhidrat_gram * besinler["karbonhidrat"]) +
-    (protein_gram * besinler["protein"]) +
-    (yağ_gram * besinler["yağ"]) +
+    (karbonhidrat_g * besinler["karbonhidrat"]) +
+    (protein_g * besinler["protein"]) +
+    (yağ_g * besinler["yağ"]) +
     (elma_adet * agirliklar["elma"] * besinler["elma"]) +
     (muz_adet * agirliklar["muz"] * besinler["muz"]) +
     (pirinç_adet * agirliklar["pirinç"] * besinler["pirinç"]) +
@@ -54,12 +53,19 @@ toplam_kalori = (
     (tavuk_adet * agirliklar["tavuk"] * besinler["tavuk"]) +
     (peynir_adet * agirliklar["peynir"] * besinler["peynir"]) +
     (yumurta_adet * agirliklar["yumurta"] * besinler["yumurta"])
-) #besinleri ve ağırlıkları yazarken dictionery kullandığım için değerleri köşeli parantezle yazdım.
+)
+"""
+Yukarıdaki toplam kalori hesaplaması; alınan karbonhidrat, protein ve yağ oranlarının 1 gramındaki kalori değerleri ile
+çarpılıp toplanmasıyla hesaplanmıştır. Besinlerin kalori hesaplaması da ağırlıkları ve kalori değerlerinin
+çarpılıp toplanmasıyla toplam kalori hesaplanmıştır.
+"""
+#besinleri ve ağırlıkları yazarken dictionery kullandığım için değerleri köşeli parantezle yazdım.
+
 
 # Sonuçların yazdırılması
 if cinsiyet == "kadın":
     print(f"\nToplam kalori: {toplam_kalori:.2f} kalori")
-    print(f"Karbonhidrat: {karbonhidrat_gram} gram, Protein: {protein_gram} gram, Yağ: {yağ_gram} gram")
+    print(f"Karbonhidrat: {karbonhidrat_g} gram, Protein: {protein_g} gram, Yağ: {yağ_g} gram")
     print(f"Elma: {elma_adet} adet, Muz: {muz_adet} adet, Pirinç: {pirinç_adet} fincan")
     print(f"Ekmek: {ekmek_adet} dilim, Tavuk: {tavuk_adet} porsiyon, Peynir: {peynir_adet} dilim, Yumurta: {yumurta_adet} adet\n")
     print(f"Günlük Kalori İhtiyacınıza Göre Besin Miktarları: {kadın_günlük_kalori_ihtiyacı} kalori")
@@ -69,7 +75,7 @@ if cinsiyet == "kadın":
 
 elif cinsiyet == "erkek":
     print(f"\nToplam kalori: {toplam_kalori:.2f} kalori")
-    print(f"Karbonhidrat: {karbonhidrat_gram} gram, Protein: {protein_gram} gram, Yağ: {yağ_gram} gram")
+    print(f"Karbonhidrat: {karbonhidrat_g} gram, Protein: {protein_g} gram, Yağ: {yağ_g} gram")
     print(f"Elma: {elma_adet} adet, Muz: {muz_adet} adet, Pirinç: {pirinç_adet} fincan")
     print(f"Ekmek: {ekmek_adet} dilim, Tavuk: {tavuk_adet} porsiyon, Peynir: {peynir_adet} dilim, Yumurta: {yumurta_adet} adet\n")
     print(f"Günlük Kalori İhtiyacınıza Göre Besin Miktarları: {erkek_günlük_kalori_ihtiyacı} kalori")
