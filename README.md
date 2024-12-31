@@ -1,5 +1,4 @@
-# Kalori-sayac-
-Kalori Sayacı
+
 # Kadın ve erkeklerin ortalama günlük kalori ihtiyaçları (kalori cinsinden)
 kadın_günlük_kalori_ihtiyacı = 2000
 erkek_günlük_kalori_ihtiyacı = 2500
