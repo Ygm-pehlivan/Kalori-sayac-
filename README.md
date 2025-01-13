@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 # Kadın ve erkeklerin ortalama günlük kalori ihtiyaçları (kalori cinsinden)
 kadın_günlük_kalori_ihtiyacı = 2000
 erkek_günlük_kalori_ihtiyacı = 2500
@@ -18,68 +20,83 @@ besinler = {
 
 # Ortalama ağırlıklar
 agirliklar = {
-    "elma": 182, # 1 adet elmanın gramı
-    "muz": 118, # 1 adet muzun gramı
-    "pirinç": 158, # gram (1 fincan pişmiş pirinç)
-    "ekmek": 28, # gram (1 dilim beyaz ekmek)
-    "tavuk": 140, # gram (1 porsiyon pişmiş tavuk)
-    "peynir": 28, # gram (1 dilim peynir)
-    "yumurta": 50 # 1 adet yumurtanın gramı
-} #besinler ve ağırlıklar dictionery kullanılarak yazılmıştır.
-
-# Kullanıcıdan alınan gram miktarları
+    "elma": 182,       # 1 adet elmanın gramı
+    "muz": 118,        # 1 adet muzun gramı
+    "pirinç": 158,     # gram (1 fincan pişmiş pirinç)
+    "ekmek": 28,       # gram (1 dilim beyaz ekmek)
+    "tavuk": 140,      # gram (1 porsiyon pişmiş tavuk)
+    "peynir": 28,      # gram (1 dilim peynir)
+    "yumurta": 50      # 1 adet yumurtanın gramı
+}
+ #besinler ve ağırlıklar dictionery kullanılarak yazılmıştır.
+ # Kullanıcıdan alınan gram miktarları
 cinsiyet = str(input("Cinsiyetiniz nedir? ").lower())
-karbonhidrat_g = float(input("Kaç gram karbonhidrat almak istiyorsunuz? "))
-protein_g = float(input("Kaç gram protein almak istiyorsunuz? "))
-yağ_g = float(input("Kaç gram yağ almak istiyorsunuz? "))
-elma_adet = int(input("Kaç adet elma yemek istiyorsunuz? "))
-muz_adet = int(input("Kaç adet muz yemek istiyorsunuz? "))
-pirinç_adet = int(input("Kaç fincan pişmiş pirinç yemek istiyorsunuz? "))
-ekmek_adet = int(input("Kaç dilim beyaz ekmek yemek istiyorsunuz? "))
-tavuk_adet = int(input("Kaç porsiyon pişmiş tavuk yemek istiyorsunuz? "))
-peynir_adet = int(input("Kaç dilim peynir yemek istiyorsunuz? "))
-yumurta_adet = int(input("Kaç adet pişmiş yumurta yemek istiyorsunuz? "))
-#Gram cinsindekiler ondalıklı sayıyla yazılabileceğinden float veri tipini kullandım,adetler ise doğal sayı olduğundan integer veri tipini kullandım.
 
-# Toplam kalori hesaplama
-toplam_kalori = (
-    (karbonhidrat_g * besinler["karbonhidrat"]) +
-    (protein_g * besinler["protein"]) +
-    (yağ_g * besinler["yağ"]) +
-    (elma_adet * agirliklar["elma"] * besinler["elma"]) +
-    (muz_adet * agirliklar["muz"] * besinler["muz"]) +
-    (pirinç_adet * agirliklar["pirinç"] * besinler["pirinç"]) +
-    (ekmek_adet * agirliklar["ekmek"] * besinler["ekmek"]) +
-    (tavuk_adet * agirliklar["tavuk"] * besinler["tavuk"]) +
-    (peynir_adet * agirliklar["peynir"] * besinler["peynir"]) +
-    (yumurta_adet * agirliklar["yumurta"] * besinler["yumurta"])
-)
+# Haftalık kalori alımı için veri girişi
+haftalik_kalori_alimi = []
+for gun in range(7):
+    print(f"\n{gun + 1}. Gün:")
+
+  # Günlük karbonhidrat, protein ve yağ alımı
+    karbonhidrat_g = float(input("Günlük kaç gram karbonhidrat almak istiyorsunuz? "))
+    protein_g = float(input("Günlük kaç gram protein almak istiyorsunuz? "))
+    yağ_g = float(input("Günlük kaç gram yağ almak istiyorsunuz? "))
+
+    # Sabah öğünü besinleri
+    elma_adet_sabah = int(input("Sabah kaç adet elma yemek istiyorsunuz? "))
+    yumurta_adet_sabah = int(input("Sabah kaç adet yumurta yemek istiyorsunuz? "))
+    peynir_adet_sabah = int(input("Sabah kaç dilim peynir yemek istiyorsunuz? "))
+    ekmek_adet_sabah = int(input("Sabah kaç adet ekmek yemek istiyorsunuz? "))
+
+    # Öğlen öğünü besinleri
+    muz_adet_oglen = int(input("Öğlen kaç adet muz yemek istiyorsunuz? "))
+    elma_adet_oglen = int(input("Öğlen kaç adet elma yemek istiyorsunuz? "))
+
+    # Akşam öğünü besinleri
+    pirinç_adet_aksam = int(input("Akşam kaç fincan pişmiş pirinç yemek istiyorsunuz? "))
+    ekmek_adet_aksam = int(input("Akşam kaç dilim ekmek yemek istiyorsunuz? "))
+    tavuk_adet_aksam = int(input("Akşam kaç porsiyon pişmiş tavuk yemek istiyorsunuz? "))
+    #Gram cinsindekiler ondalıklı sayıyla yazılabileceğinden float veri tipini kullandım,adetler ise doğal sayı olduğundan integer veri tipini kullandım.
+
+    # Günlük toplam kalori hesaplama
+    toplam_kalori_gunluk = (
+        (karbonhidrat_g * besinler["karbonhidrat"]) +
+        (protein_g * besinler["protein"]) +
+        (yağ_g * besinler["yağ"]) +
+        (elma_adet_sabah * agirliklar["elma"] * besinler["elma"]) +
+        (yumurta_adet_sabah * agirliklar["yumurta"] * besinler["yumurta"]) +
+        (peynir_adet_sabah * agirliklar["peynir"] * besinler["peynir"]) +
+        (ekmek_adet_sabah * agirliklar["ekmek"] * besinler["ekmek"]) +
+
+        (muz_adet_oglen * agirliklar["muz"] * besinler["muz"]) +
+        (elma_adet_oglen * agirliklar["elma"] * besinler["elma"]) +
+
+        (pirinç_adet_aksam * agirliklar["pirinç"] * besinler["pirinç"]) +
+        (ekmek_adet_aksam * agirliklar["ekmek"] * besinler["ekmek"]) +
+        (tavuk_adet_aksam * agirliklar["tavuk"] * besinler["tavuk"])
+    )
+    haftalik_kalori_alimi.append(toplam_kalori_gunluk)
 """
-Yukarıdaki toplam kalori hesaplaması; alınan karbonhidrat, protein ve yağ oranlarının 1 gramındaki kalori değerleri ile
+Yukarıdaki kalori hesaplaması; alınan karbonhidrat, protein ve yağ oranlarının 1 gramındaki kalori değerleri ile
 çarpılıp toplanmasıyla hesaplanmıştır. Besinlerin kalori hesaplaması da ağırlıkları ve kalori değerlerinin
 çarpılıp toplanmasıyla toplam kalori hesaplanmıştır.
 """
 #besinleri ve ağırlıkları yazarken dictionery kullandığım için değerleri köşeli parantezle yazdım.
 
+# Haftalık kalori alımını sütun grafiği şeklinde gösterme
+gunler = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+plt.bar(gunler, haftalik_kalori_alimi, color='skyblue')
+plt.xlabel('Günler')
+plt.ylabel('Kalori Alımı')
+plt.title('Haftalık Günlük Kalori Alımı')
+plt.axhline(y=(kadın_günlük_kalori_ihtiyacı if cinsiyet == "kadın" else erkek_günlük_kalori_ihtiyacı), color='r', linestyle='--', label='Günlük Kalori İhtiyacı')
+plt.legend()
+plt.show()
 
-# Sonuçların yazdırılması
-if cinsiyet == "kadın":
-    print(f"\nToplam kalori: {toplam_kalori:.2f} kalori")
-    print(f"Karbonhidrat: {karbonhidrat_g} gram, Protein: {protein_g} gram, Yağ: {yağ_g} gram")
-    print(f"Elma: {elma_adet} adet, Muz: {muz_adet} adet, Pirinç: {pirinç_adet} fincan")
-    print(f"Ekmek: {ekmek_adet} dilim, Tavuk: {tavuk_adet} porsiyon, Peynir: {peynir_adet} dilim, Yumurta: {yumurta_adet} adet\n")
-    print(f"Günlük Kalori İhtiyacınıza Göre Besin Miktarları: {kadın_günlük_kalori_ihtiyacı} kalori")
-
-    if toplam_kalori > kadın_günlük_kalori_ihtiyacı:
-        print("\nUyarı: Günlük kalori ihtiyacınızı aştınız (Kadın)")
-
-elif cinsiyet == "erkek":
-    print(f"\nToplam kalori: {toplam_kalori:.2f} kalori")
-    print(f"Karbonhidrat: {karbonhidrat_g} gram, Protein: {protein_g} gram, Yağ: {yağ_g} gram")
-    print(f"Elma: {elma_adet} adet, Muz: {muz_adet} adet, Pirinç: {pirinç_adet} fincan")
-    print(f"Ekmek: {ekmek_adet} dilim, Tavuk: {tavuk_adet} porsiyon, Peynir: {peynir_adet} dilim, Yumurta: {yumurta_adet} adet\n")
-    print(f"Günlük Kalori İhtiyacınıza Göre Besin Miktarları: {erkek_günlük_kalori_ihtiyacı} kalori")
-
-    if toplam_kalori > erkek_günlük_kalori_ihtiyacı:
-        print("\nUyarı: Günlük kalori ihtiyacınızı aştınız (Erkek)")
+# Kalori miktarını aşma durumunda diyet önerme
+for gun, kalori in zip(gunler, haftalik_kalori_alimi):
+    if cinsiyet == "kadın" and kalori > kadın_günlük_kalori_ihtiyacı:
+        print(f"\nUyarı: {gun} günü günlük kalori ihtiyacınızı aştınız. Daha dengeli bir diyet için daha az kalorili besinler tercih edin.")
+    elif cinsiyet == "erkek" and kalori > erkek_günlük_kalori_ihtiyacı:
+        print(f"\nUyarı: {gun} günü günlük kalori ihtiyacınızı aştınız. Daha dengeli bir diyet için daha az kalorili besinler tercih edin.")
 
